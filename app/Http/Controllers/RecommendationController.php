@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
-use App\Models\Task;
+use App\Models\Recommendation;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
+class RecommendationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-        return view('tasks.index', compact('tasks'));
+        $recommendations = Recommendation::all();
+        return view('recommendations.index', compact('recommendations'));
     }
 
     /**
@@ -27,7 +25,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        //
     }
 
     /**
@@ -36,60 +34,53 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTaskRequest $request)
+    public function store(Request $request)
     {
-        Task::create($request->validated());
-
-        return redirect()->route('tasks.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Recommendation  $recommendation
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(Recommendation $recommendation)
     {
-        return view('tasks.show', compact('task'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Recommendation  $recommendation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit(Recommendation $recommendation)
     {
-        return view('tasks.edit', compact('task'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Recommendation  $recommendation
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(Request $request, Recommendation $recommendation)
     {
-        $task->update($request->validated());
-
-        return redirect()->route('tasks.index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Recommendation  $recommendation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(Recommendation $recommendation)
     {
-
-        $task->delete();
-
-        return redirect()->route('tasks.index');
+        //
     }
 }

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
-use App\Models\Task;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-        return view('tasks.index', compact('tasks'));
+        $users = User::with('roles')->get();
+
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -27,7 +29,9 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        $roles = Role::pluck('title', 'id');
+
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -36,11 +40,12 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreUserRequest $request)
     {
-        Task::create($request->validated());
+        $user = User::create($request->validated());
+        $user->roles()->sync($request->input('roles', []));
 
-        return redirect()->route('tasks.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -49,9 +54,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(User $user)
     {
-        return view('tasks.show', compact('task'));
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -60,9 +65,13 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit(User $user)
     {
-        return view('tasks.edit', compact('task'));
+        $roles = Role::pluck('title', 'id');
+
+        $user->load('roles');
+
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -72,11 +81,12 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateTaskRequest $request, Task $task)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $task->update($request->validated());
+        $user->update($request->validated());
+        $user->roles()->sync($request->input('roles', []));
 
-        return redirect()->route('tasks.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -85,11 +95,10 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(User $user)
     {
+        $user->delete();
 
-        $task->delete();
-
-        return redirect()->route('tasks.index');
+        return redirect()->route('users.index');
     }
 }
