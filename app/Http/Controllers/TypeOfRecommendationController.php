@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recommendation;
-use App\Models\Section;
-use App\Models\Status;
 use App\Models\TypeOfRecommendation;
 use Illuminate\Http\Request;
 
-class RecommendationController extends Controller
+class TypeOfRecommendationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,7 @@ class RecommendationController extends Controller
      */
     public function index()
     {
-        $recommendations = Recommendation::all();
-        return view('recommendations.index', compact('recommendations'));
+        //
     }
 
     /**
@@ -28,10 +24,7 @@ class RecommendationController extends Controller
      */
     public function create()
     {
-        $types = TypeOfRecommendation::all();
-        $sections = Section::all();
-        $statuses = Status::all();
-        return view('recommendations.create', compact('types', 'sections', 'statuses'));
+        //
     }
 
     /**
@@ -48,10 +41,10 @@ class RecommendationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Recommendation  $recommendation
+     * @param  \App\Models\TypeOfRecommendation  $typeOfRecommendation
      * @return \Illuminate\Http\Response
      */
-    public function show(Recommendation $recommendation)
+    public function show(TypeOfRecommendation $typeOfRecommendation)
     {
         //
     }
@@ -59,10 +52,10 @@ class RecommendationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Recommendation  $recommendation
+     * @param  \App\Models\TypeOfRecommendation  $typeOfRecommendation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Recommendation $recommendation)
+    public function edit(TypeOfRecommendation $typeOfRecommendation)
     {
         //
     }
@@ -71,10 +64,10 @@ class RecommendationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Recommendation  $recommendation
+     * @param  \App\Models\TypeOfRecommendation  $typeOfRecommendation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Recommendation $recommendation)
+    public function update(Request $request, TypeOfRecommendation $typeOfRecommendation)
     {
         //
     }
@@ -82,10 +75,10 @@ class RecommendationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Recommendation  $recommendation
+     * @param  \App\Models\TypeOfRecommendation  $typeOfRecommendation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Recommendation $recommendation)
+    public function destroy(TypeOfRecommendation $typeOfRecommendation)
     {
         //
     }

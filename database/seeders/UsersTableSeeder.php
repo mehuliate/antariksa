@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'admin@admin.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
+                'current_team_id' => null,
             ],
             [
                 'id'             => 2,
@@ -28,6 +29,15 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'user@user.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
+                'current_team_id' => null,
+            ],
+            [
+                'id'             => 3,
+                'name'           => 'Rinaldi',
+                'email'          => 'rinaldi@mail.com',
+                'password'       => bcrypt('password'),
+                'remember_token' => null,
+                'current_team_id' => 1,
             ],
         ];
 

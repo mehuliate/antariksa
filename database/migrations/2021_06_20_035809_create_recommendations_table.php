@@ -16,10 +16,12 @@ class CreateRecommendationsTable extends Migration
         Schema::create('recommendations', function (Blueprint $table) {
             $table->id();
             $table->text('recommendation');
+            $table->integer('type_of_recommendations_id');
             $table->integer('section_id');
             $table->integer('support_section_id');
             $table->date('deadline');
             $table->integer('status_id');
+            $table->text('ki_note');
             $table->timestamps();
         });
     }
